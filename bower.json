@@ -3,7 +3,11 @@
   "private": true,
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
-    "modernizr": "~2.8.3"
+    "modernizr": "~2.8.3",
+    "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git#~7.1.1",
+    "lightbox2": "~2.8.2",
+    "blazy": "~1.5.2",
+    "angular": "~1.4.8"
   },
   "overrides": {
     "bootstrap-sass": {
@@ -16,6 +20,7 @@
   },
   "devDependencies": {
     "chai": "~3.4.2",
-    "mocha": "~2.3.4"
+    "mocha": "~2.3.4",
+    "google-analytics-js": "~0.0.1"
   }
 }

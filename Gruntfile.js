@@ -164,8 +164,8 @@ module.exports = function (grunt) {
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
       options: {
-        sourceMap: true,
-        sourceMapEmbed: true,
+        sourceMap: false,
+        sourceMapEmbed: false,
         sourceMapContents: true,
         includePaths: ['.']
       },
@@ -191,7 +191,7 @@ module.exports = function (grunt) {
 
     postcss: {
       options: {
-        map: true,
+        map: false,
         processors: [
           // Add vendor prefixed styles
           require('autoprefixer-core')({
@@ -213,7 +213,7 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= config.app %>/index.html'],
-        exclude: ['bootstrap.js'],
+        exclude: ['modernizr.js','all.js','bootstrap.js','lightbox.js'],
         ignorePath: /^(\.\.\/)*\.\./
       },
       sass: {
@@ -288,17 +288,19 @@ module.exports = function (grunt) {
           collapseWhitespace: true,
           conservativeCollapse: true,
           removeAttributeQuotes: true,
+          removeComments:true,
+          minifyJS:true,
           removeCommentsFromCDATA: true,
           removeEmptyAttributes: true,
           removeOptionalTags: true,
           // true would impact styles with attribute selectors
-          removeRedundantAttributes: false,
+          removeRedundantAttributes: true,
           useShortDoctype: true
         },
         files: [{
           expand: true,
           cwd: '<%= config.dist %>',
-          src: '{,*/}*.html',
+          src: 'index.html',
           dest: '<%= config.dist %>'
         }]
       }
@@ -307,16 +309,15 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care
     // of minification. These next options are pre-configured if you do not
     // wish to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%= config.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
+    cssmin: {
+      purify: {
+        files: {
+          '<%= config.dist %>/styles/main.css': [
+            '<%= config.dist %>/styles/main.css'
+          ]
+        }
+      }
+    },
     // uglify: {
     //   dist: {
     //     files: {
@@ -339,18 +340,26 @@ module.exports = function (grunt) {
           cwd: '<%= config.app %>',
           dest: '<%= config.dist %>',
           src: [
-            '*.{ico,png,txt}',
+            '*.{ico,png,txt,jpg,gif,htaccess,php,xml}',
             'images/{,*/}*.webp',
+            'images/{,*/}*.png',
+            'images/{,*/}*.jpg',
+            'images/{,*/}*.gif',
+            'scripts/vendor/{,*/}*.js',
+            'PHPMailer/{,*/}*.*',
             '{,*/}*.html',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+            '!form.html'
           ]
-        }, {
-          expand: true,
-          dot: true,
-          cwd: '.',
-          src: 'bower_components/bootstrap-sass/assets/fonts/bootstrap/*',
-          dest: '<%= config.dist %>'
-        }]
+      },{
+        expand: true,
+        dot: true,
+        cwd: 'bower_components/google-analytics-js/',
+        dest: '<%= config.dist %>/scripts/vendor/',
+        src: [
+          'gajs.min.js'
+        ]
+      }]
       }
     },
 
@@ -371,6 +380,56 @@ module.exports = function (grunt) {
       }
     },
 
+    hazy: {
+          php: {
+              expand: true,
+              cwd: 'dist',
+              dest: 'dist',
+              src: [ '*.php' ]
+          },
+          js: {
+              expand: true,
+              cwd: 'dist',
+              dest: 'dist',
+              src: [ 'scripts/main.js' ]
+          }
+      },
+
+      purifycss: {
+      options: {minify:true},
+      target: {
+        src: ['dist/*.html','app/form.html','dist/scripts/{,*/}*.js'],
+        css: ['dist/styles/main.css'],
+        dest: 'dist/styles/main.css'
+      },
+    },
+
+    combine_mq: {
+    default_options: {
+      expand: true,
+      cwd: 'dist/',
+      src: 'styles/main.css',
+      dest: 'dist/'
+    }
+},
+
+critical: {
+    desctop: {
+        options: {
+            base: './dist/',
+            css: [
+                'dist/styles/main.css'
+            ],
+            minify:true,
+            width:1366,
+            height: 768
+        },
+        src: 'dist/index.html',
+        dest: 'dist/index.html'
+    }
+},
+
+
     // Run some tasks in parallel to speed up build process
     concurrent: {
       server: [
@@ -383,7 +442,7 @@ module.exports = function (grunt) {
       dist: [
         'babel',
         'sass',
-        'imagemin',
+        //'imagemin',
         'svgmin'
       ]
     }
@@ -434,11 +493,17 @@ module.exports = function (grunt) {
     'postcss',
     'concat',
     'cssmin',
+
     'uglify',
     'copy:dist',
-    'modernizr',
-    'filerev',
+    'purifycss',
+    'combine_mq',
+    'cssmin:purify',
+
+    //'modernizr',
+    //'filerev',
     'usemin',
+    'critical',
     'htmlmin'
   ]);
 

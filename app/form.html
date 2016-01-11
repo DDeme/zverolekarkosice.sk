@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="no-js" lang="sk">
+
+<head>
+</head>
+
+<body>
+  <div class="rslides_container">
+    <ul class="rslides large-btns large-btns1" id="slider3">
+      <li id="large-btns1_s0" class="large-btns1_on" style="display: block; float: left; position: relative; opacity: 1; z-index: 2; transition: opacity 500ms ease-in-out;">
+        <div class="b-lazy b-error b-loaded" style="background-image: url(&quot;./images/title_foto.jpg&quot;);"> </div>
+      </li>
+      <li id="large-btns1_s1" style="float: none; position: absolute; opacity: 0; z-index: 1; display: list-item; transition: opacity 500ms ease-in-out;">
+        <div class="b-lazy b-loaded" style="background-image: url(&quot;./images/title_foto.jpg&quot;);"> </div>
+      </li>
+    </ul><a href="#" class="large-btns_nav large-btns1_nav prev">Previous</a><a href="#" class="large-btns_nav large-btns1_nav next">Next</a> </div>
+  <form ng-submit="submit(contactform)" name="contactform" ng-init="formData.validate='kzhrIaTLuV54Gsby5LWqQA=='" class="ng-pristine ng-valid-email ng-invalid ng-invalid-required">
+    <div class="form-group">
+      <label for="email" class="hidden">Email</label>
+      <input ng-model="formData.inputEmail" type="email" name="email" class="form-control ng-pristine ng-valid-email ng-invalid ng-invalid-required ng-touched" id="email" placeholder="Email" required="">
+    </div>
+    <div class="form-group">
+      <label for="name" class="hidden">Meno</label>
+      <input ng-model="formData.inputName" type="text" name="name" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" id="name" placeholder="Meno" required="">
+    </div>
+
+    <div class="form-group">
+      <label for="msg" class="hidden">Vaša správa</label>
+      <textarea ng-model="formData.inputMessage" name="msg" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" placeholder="Vaša správa" rows="7" id="msg" required=""></textarea>
+    </div>
+    <p ng-class="result" class="ng-binding hidden"></p>
+    <button type="submit" class="btn btn-default col-xs-12" ng-disabled="submitButtonDisabled">Odoslať</button>
+  </form>
+</body>
+
+</html>
