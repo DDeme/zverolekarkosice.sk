@@ -114,7 +114,7 @@ if (strpos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST']) !== FALSE) {
       </div>
       <div class="form-group">
         <label for="msg" class="hidden">Vaša správa</label>
-        <textarea ng-model="formData.inputMessage" name="msg" class="form-control" placeholder="Vaša správa" rows="7" id="msg" required></textarea>
+        <textarea ng-model="formData.inputMessage" name="msg" class="form-control" placeholder="Vaša správa" rows="10" id="msg" required></textarea>
       </div>
       <p ng-class="result">{{ resultMessage }}</p>
       <button type="submit" class="btn btn-default col-xs-12" ng-disabled="submitButtonDisabled">Odoslať</button>

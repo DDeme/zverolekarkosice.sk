@@ -53,11 +53,26 @@ if (isset($_POST['inputName']) && isset($_POST['inputEmail']) && isset($_POST['i
     $mail->Subject = "Kontaktný formulár na stránke zverolekarkosice.sk";
     $mail->Body = "Email: " . $_POST['inputEmail'] . "\r\n\r\nMeno: " . $_POST['inputName'] . "\r\n\r\nSpráva: " . stripslashes($_POST['inputMessage']);
 
+    $mail_to_sender = new PHPMailer;
+    $mail_to_sender->setLanguage('sk');
+    $mail_to_sender->CharSet = 'UTF-8';
+    //$mail_to_sender->AddReplyTo($_POST['inputEmail']);
+    $mail_to_sender->From ='info@zverolekarkosice.sk';
+    $mail_to_sender->FromName = 'Zverolekarkosice.sk';
+    $mail_to_sender->AddAddress($_POST['inputEmail']); //recipient
+    //$mail->AddBCC($_POST['inputEmail']);
+    $mail_to_sender->Subject = "Kontaktný formulár na stránke zverolekarkosice.sk";
+    $mail_to_sender->Body = "Vaša správa z kontaktného formulára zverolekarkosice.sk bola doručená. Budeme vás kontaktovať. .\r\n\r\nKópia Vašej správy:\r\n\r\n  Email: " . $_POST['inputEmail'] . "\r\n\r\nMeno: " . $_POST['inputName'] . "\r\n\r\nSpráva: " . stripslashes($_POST['inputMessage']);
+
+
+
+
+
     if (isset($_POST['ref'])) {
         $mail->Body .= "\r\n\r\nRef: " . $_POST['ref'];
     }
 
-    if(!$mail->send()) {
+    if(!$mail->send() && !$mail_to_sender->send()) {
         $data = array('success' => false, 'message' => 'Nastala chyba správa nebola odoslaná.' . $mail->ErrorInfo);
         echo json_encode($data);
         exit;
@@ -99,7 +114,7 @@ if (strpos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST']) !== FALSE) {
       </div>
       <div class="form-group">
         <label for="msg" class="hidden">Vaša správa</label>
-        <textarea ng-model="formData.inputMessage" name="msg" class="form-control" placeholder="Vaša správa" rows="7" id="msg" required></textarea>
+        <textarea ng-model="formData.inputMessage" name="msg" class="form-control" placeholder="Vaša správa" rows="10" id="msg" required></textarea>
       </div>
       <p ng-class="result">{{ resultMessage }}</p>
       <button type="submit" class="btn btn-default col-xs-12" ng-disabled="submitButtonDisabled">Odoslať</button>

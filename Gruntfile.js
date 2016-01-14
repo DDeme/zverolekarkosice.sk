@@ -327,9 +327,12 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // concat: {
-    //   dist: {}
-    // },
+    //  concat: {
+    //      dist: {
+    //     src: ['dist/scripts/vendor.js','dist/scripts/plugins.js','dist/scripts/vendor.js'],
+    //     dest: 'dist/scripts/all.js',
+    //   },
+    //  },
 
     // Copies remaining files to places other tasks can use
     copy: {
@@ -491,7 +494,7 @@ critical: {
     'useminPrepare',
     'concurrent:dist',
     'postcss',
-    'concat',
+    'concat:generated',
     'cssmin',
 
     'uglify',
