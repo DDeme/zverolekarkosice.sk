@@ -3,7 +3,6 @@
   "private": true,
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
-    "modernizr": "~2.8.3",
     "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git#~7.1.1",
     "lightbox2": "~2.8.2",
     "blazy": "~1.5.2",

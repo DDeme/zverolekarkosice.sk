@@ -179,11 +179,17 @@ body {
 }
 
 .pohotovost {
-  padding: 35px 25px;
+  padding-top: 35px;
+  padding-right: 25px;
   color: #fff;
   font-weight: bold;
   font-size: 14px;
 
+  .numbers {
+      float: right;
+      top:-10px;
+      position: relative;
+  }
   .cross {
     margin: 0 20px;
     position: relative;
@@ -528,7 +534,12 @@ body {
     margin-bottom: 20px;
     margin-top: 50px;
   }
-
+  span.tab {
+      width: 45.4375px;
+      display: block;
+      height: 12px;
+      float: left;
+  }
   p {
     margin-bottom: 20px;
   }
