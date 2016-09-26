@@ -432,6 +432,53 @@ critical: {
     }
 },
 
+compress: {
+  html: {
+      options: {
+          mode: 'gzip'
+      },
+      expand: true,
+      cwd: 'dist/',
+      src: [ '*.html'
+
+              ],
+      dest: 'dist/',
+      ext: '.html.gz'
+  },
+  css: {
+      options: {
+          mode: 'gzip'
+      },
+      expand: true,
+      cwd: 'dist/',
+      src: [ 'styles/css/{,*/}*.css'
+              ],
+      dest: 'dist/',
+      ext: '.css.gz'
+  },
+  js: {
+      options: {
+          mode: 'gzip'
+      },
+      expand: true,
+      cwd: 'dist/',
+      src: [ 'scripts/{,*/}*.js'
+              ],
+      dest: 'dist/',
+      ext: '.js.gz'
+  },
+  svg: {
+      options: {
+          mode: 'gzip'
+      },
+      expand: true,
+      cwd: 'dist/',
+      src: [ 'images/{,*/}*.svg'
+              ],
+      dest: 'dist/',
+      ext: '.svg.gz'
+  }
+},
 
     // Run some tasks in parallel to speed up build process
     concurrent: {
