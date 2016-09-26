@@ -28,14 +28,14 @@ smoothScroll.init({
   cache: true
 });
 
-    $.getScript( "scripts/vendor/responsiveslides.min.js", function( data, textStatus, jqxhr ) {
-        $("#slider3").responsiveSlides({
+    $.getScript( 'scripts/vendor/responsiveslides.min.js', function( data, textStatus, jqxhr ) {
+        $('#slider3').responsiveSlides({
           auto: false,
           pager: false,
           nav: true,
           speed: 500,
          // maxwidth: 800,
-          namespace: "large-btns"
+          namespace: 'large-btns'
         });
 
         var bLazyslid = new Blazy({
@@ -45,7 +45,7 @@ smoothScroll.init({
     });
 
 
-    $.getScript( "scripts/vendor/lightbox.min.js", function( data, textStatus, jqxhr ) {
+    $.getScript( 'scripts/vendor/lightbox.min.js', function( data, textStatus, jqxhr ) {
         lightbox.option({
              //'resizeDuration': 200,
              fadeDuration:200,
@@ -55,7 +55,9 @@ smoothScroll.init({
 
     });
 
-
+    $('.navbar-collapse a').click(function(){
+        $(".navbar-collapse").collapse('hide');
+    });
 
 
 
@@ -72,7 +74,7 @@ var bLazy = new Blazy({
     setTimeout(function () {
       // We want to remove the loader gif now.
       // First we find the parent container
-      // then we remove the "loading" class which holds the loader image
+      // then we remove the 'loading' class which holds the loader image
       var parent = element.parentNode;
       parent.className = parent.className.replace(/\bloading\b/, '');
     }, 200);
@@ -83,7 +85,7 @@ var bLazy = new Blazy({
 
     // angular.element(document).ready(function() {
     //
-    //  angular.bootstrap(document, ["contactApp"]);
+    //  angular.bootstrap(document, ['contactApp']);
 
 
     var app = angular.module('contactApp', [])
@@ -161,7 +163,7 @@ function startgmaps() {
     }
 
    setTimeout( function(){
-    jquerywinobj.on( "scroll",function () {
+    jquerywinobj.on( 'scroll',function () {
         if ( (jquerywinobj.scrollTop() > jquerybodyobj.height() / 2) && !gmapstarted) {
           startgooglemaps();
           gmapstarted = true;
@@ -174,7 +176,7 @@ function startgmaps() {
 
 // dom ready
 function startgooglemaps() {
-  //if (typeof google !== "undefined"){
+  //if (typeof google !== 'undefined'){
   if (window.google && google.maps) {
     initializeMap();
   } else {
@@ -390,11 +392,11 @@ function initialize(params) {
           'visibility': 'on'
         }]
       }]
-      // styles: [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2e5d4"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#c5dac6"}]},{"featureType":"poi.park","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":20}]},{"featureType":"road","elementType":"all","stylers":[{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#c5c6c6"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#e4d7c6"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#fbfaf7"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#acbcc9"}]}]
+      // styles: [{'featureType':'administrative','elementType':'all','stylers':[{'visibility':'on'},{'lightness':33}]},{'featureType':'landscape','elementType':'all','stylers':[{'color':'#f2e5d4'}]},{'featureType':'poi.park','elementType':'geometry','stylers':[{'color':'#c5dac6'}]},{'featureType':'poi.park','elementType':'labels','stylers':[{'visibility':'on'},{'lightness':20}]},{'featureType':'road','elementType':'all','stylers':[{'lightness':20}]},{'featureType':'road.highway','elementType':'geometry','stylers':[{'color':'#c5c6c6'}]},{'featureType':'road.arterial','elementType':'geometry','stylers':[{'color':'#e4d7c6'}]},{'featureType':'road.local','elementType':'geometry','stylers':[{'color':'#fbfaf7'}]},{'featureType':'water','elementType':'all','stylers':[{'visibility':'on'},{'color':'#acbcc9'}]}]
   };
 
   // Get the HTML DOM element that will contain your map
-  // We are using a div with id="map" seen below in the <body>
+  // We are using a div with id='map' seen below in the <body>
   var mapElement = document.getElementById('map');
 
   // Create the Google Map using our element and options defined above
