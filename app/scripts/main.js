@@ -33,7 +33,7 @@ smoothScroll.init({
           auto: false,
           pager: false,
           nav: true,
-          speed: 500,
+          speed: 3500,
          // maxwidth: 800,
           namespace: 'large-btns'
         });
