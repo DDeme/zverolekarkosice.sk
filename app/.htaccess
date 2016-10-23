@@ -360,10 +360,10 @@ AddDefaultCharset utf-8
     # RewriteOptions <options>
 
     # (6)
-    RewriteCond %{HTTPS} =on
-    RewriteRule ^ - [env=proto:https]
-    RewriteCond %{HTTPS} !=on
-    RewriteRule ^ - [env=proto:http]
+    # RewriteCond %{HTTPS} =on
+    # RewriteRule ^ - [env=proto:https]
+    # RewriteCond %{HTTPS} !=on
+    # RewriteRule ^ - [env=proto:http]
 
 </IfModule>
 
@@ -374,11 +374,11 @@ AddDefaultCharset utf-8
 # Redirect from the `http://` to the `https://` version of the URL.
 # https://wiki.apache.org/httpd/RewriteHTTPToHTTPS
 
-# <IfModule mod_rewrite.c>
-#    RewriteEngine On
-#    RewriteCond %{HTTPS} !=on
-#    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
-# </IfModule>
+<IfModule mod_rewrite.c>
+   # RewriteEngine On
+   # RewriteCond %{HTTPS} !=on
+   # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
 
 # ----------------------------------------------------------------------
 # | Suppressing / Forcing the `www.` at the beginning of URLs          |
@@ -402,12 +402,12 @@ AddDefaultCharset utf-8
 
 # Option 1: rewrite www.example.com → example.com
 
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{HTTPS} !=on
-    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-    RewriteRule ^ %{ENV:PROTO}://%1%{REQUEST_URI} [R=301,L]
-</IfModule>
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{HTTPS} !=on
+#     RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+#     RewriteRule ^ %{ENV:PROTO}://%1%{REQUEST_URI} [R=301,L]
+# </IfModule>
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

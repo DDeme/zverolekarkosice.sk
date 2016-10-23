@@ -124,7 +124,7 @@ if (strpos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST']) !== FALSE) {
 
 else {
 
-    header("Location: http://".$_SERVER['HTTP_HOST']);
+    header("Location: https://".$_SERVER['HTTP_HOST']);
     exit;
 }
 

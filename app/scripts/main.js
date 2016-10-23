@@ -1,5 +1,6 @@
 // jshint devel:true
-console.log('01100100 01100101 01101101 01100101 01100011 01101011 01101111 00101110 01100011 01101111 01101101');
+
+console.log('developed by Demecko.com');
 
 var WebFontConfig = {
   google: {
@@ -25,15 +26,15 @@ smoothScroll.init({
 
 
    $.ajaxSetup({
-  cache: true
-});
+       cache: true
+    });
 
     $.getScript( 'scripts/vendor/responsiveslides.min.js', function( data, textStatus, jqxhr ) {
         $('#slider3').responsiveSlides({
           auto: false,
           pager: false,
           nav: true,
-          speed: 3500,
+          speed: 1500,
          // maxwidth: 800,
           namespace: 'large-btns'
         });
@@ -56,7 +57,7 @@ smoothScroll.init({
     });
 
     $('.navbar-collapse a').click(function(){
-        $(".navbar-collapse").collapse('hide');
+        $('.navbar-collapse').collapse('hide');
     });
 
 
@@ -421,7 +422,7 @@ function initialize(params) {
 }
 
 function lazyLoadGoogleMap() {
-  $.getScript('http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap')
+  $.getScript('https://maps.google.com/maps/api/js?sensor=true&callback=initializeMap')
     .done(function (script, textStatus) {
       //alert('Google map script loaded successfully');
     })

@@ -312,8 +312,8 @@ module.exports = function (grunt) {
     cssmin: {
       purify: {
         files: {
-          '<%= config.dist %>/styles/main.css': [
-            '<%= config.dist %>/styles/main.css'
+          'dist/styles/main.css': [
+            'dist/styles/main.css'
           ]
         }
       }
@@ -451,7 +451,7 @@ compress: {
       },
       expand: true,
       cwd: 'dist/',
-      src: [ 'styles/css/{,*/}*.css'
+      src: [ 'styles/{,*/}*.css'
               ],
       dest: 'dist/',
       ext: '.css.gz'
@@ -542,7 +542,7 @@ compress: {
     'concurrent:dist',
     'postcss',
     'concat:generated',
-    'cssmin',
+	'cssmin:generated',
 
     'uglify',
     'copy:dist',
@@ -554,7 +554,8 @@ compress: {
     //'filerev',
     'usemin',
     'critical',
-    'htmlmin'
+    'htmlmin',
+	'compress'
   ]);
 
   grunt.registerTask('default', [
